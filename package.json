@@ -1,6 +1,6 @@
 {
-  "name": "openapi-to-postmanv2",
-  "version": "2.10.1",
+  "name": "cko-openapi-to-postmanv2",
+  "version": "1.0",
   "description": "Convert a given OpenAPI specification to Postman Collection v2.0",
   "homepage": "https://github.com/postmanlabs/openapi-to-postman",
   "bugs": "https://github.com/postmanlabs/openapi-to-postman/issues",
@@ -113,7 +113,7 @@
   },
   "main": "index.js",
   "bin": {
-    "openapi2postmanv2": "./bin/openapi2postmanv2.js"
+    "ckoopenapi2postmanv2": "bin/ckoopenapi2postmanv2.js"
   },
   "dependencies": {
     "ajv": "6.12.6",
