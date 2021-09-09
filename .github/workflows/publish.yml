@@ -1,4 +1,4 @@
-name: Merge to main branch
+name: Merge to develop branch
 
 on:
   push:
