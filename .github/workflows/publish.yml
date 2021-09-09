@@ -3,7 +3,7 @@ name: Merge to main branch
 on:
   push:
     branches:
-      - main
+      - develop
 
 env:
   CI: true
