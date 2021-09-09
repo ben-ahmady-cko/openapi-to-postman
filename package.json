@@ -1,6 +1,6 @@
 {
   "name": "@cko/openapi-to-postmanv2",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Convert a given OpenAPI specification to Postman Collection v2.0",
   "homepage": "https://github.com/checkout/openapi-to-postman",
   "bugs": "https://github.com/checkout/openapi-to-postman/issues",
