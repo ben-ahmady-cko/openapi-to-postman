@@ -1,0 +1,63 @@
+name: Merge to main branch
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  CI: true
+  MYGET_NPM_TOKEN: ${{ secrets.WRITE_MYGET_NPM_TOKEN }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Branch name
+        id: branch_name
+        run: |
+          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/v*}
+
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: "0" # pulls all commits (needed for semantic release to version)
+
+      - uses: actions/setup-node@v2.2.0
+        with:
+          node-version: "14.x"
+
+      - name: Prepare repository
+        run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com" && git config user.name "$GITHUB_ACTOR"
+
+      - name: Patch version
+        if: startsWith(github.ref, 'refs/tags/v') != true
+        run: |
+          echo 'Update patch version'
+          yarn version --patch
+
+      - name: Full version from git
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          echo "Update to version ${{ steps.branch_name.outputs.SOURCE_TAG }}"
+          yarn version --no-git-tag-version --new-version ${{ steps.branch_name.outputs.SOURCE_TAG }}
+
+      - name: cache node_modules
+        id: cache-node
+        uses: actions/cache@v2.1.6
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: yarn install
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: yarn --ignore-scripts --ignore-optional --pure-lockfile
+
+      - name: Release
+        if: ${{ success() }}
+        run: |
+          git push origin main --tags --verbose
+          yarn release
