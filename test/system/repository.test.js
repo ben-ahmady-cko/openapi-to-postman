@@ -61,7 +61,7 @@ describe('project repository', function () {
     describe('binary definitions', function () {
       it('must exist', function () {
         expect(json.bin).be.ok();
-        expect(json.bin).to.eql({ 'openapi2postmanv2': './bin/openapi2postmanv2.js' });
+        expect(json.bin).to.eql({ 'openapi2postmanv2': './bin/ckoopenapi2postmanv2.js' });
       });
 
       it('must have valid node shebang', function () {

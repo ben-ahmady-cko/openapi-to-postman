@@ -1,12 +1,12 @@
 {
-  "name": "openapi-to-postmanv2",
-  "version": "2.10.1",
+  "name": "cko-openapi-to-postmanv2",
+  "version": "1.0.0",
   "description": "Convert a given OpenAPI specification to Postman Collection v2.0",
-  "homepage": "https://github.com/postmanlabs/openapi-to-postman",
-  "bugs": "https://github.com/postmanlabs/openapi-to-postman/issues",
+  "homepage": "https://github.com/checkout/openapi-to-postman",
+  "bugs": "https://github.com/checkout/openapi-to-postman/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/postmanlabs/openapi-to-postman.git"
+    "url": "git://github.com/checkout/openapi-to-postman.git"
   },
   "keywords": [
     "openapi",
@@ -113,7 +113,7 @@
   },
   "main": "index.js",
   "bin": {
-    "openapi2postmanv2": "./bin/openapi2postmanv2.js"
+    "ckoopenapi2postmanv2": "bin/ckoopenapi2postmanv2.js"
   },
   "dependencies": {
     "ajv": "6.12.6",
@@ -137,8 +137,8 @@
     "eslint-plugin-mocha": "5.3.0",
     "eslint-plugin-security": "1.4.0",
     "expect.js": "0.3.1",
-    "nyc": "15.1.0",
     "mocha": "7.2.0",
+    "nyc": "15.1.0",
     "parse-gitignore": "0.5.1"
   },
   "scripts": {
@@ -146,7 +146,6 @@
     "test-unit": "./scripts/test-unit.sh",
     "test-lint": "./scripts/test-lint.sh",
     "test-system": "./scripts/test-system.sh",
-    "release": "./scripts/release.sh",
     "coverage": "nyc report --reporter=html --reporter=text mocha"
   }
 }
